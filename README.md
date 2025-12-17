@@ -152,10 +152,24 @@ Python 3.8+
 pip install -r requirements.txt
 ```
 
+### Données INSEE
+
+Les datasets INSEE sont inclus dans le repository sous forme de fichiers ZIP compressés pour respecter la limite de taille de GitHub. Ils seront **automatiquement extraits** au premier lancement de l'application.
+
+Aucune action manuelle requise ! 🎉
+
 ### Lancement
 
 ```bash
 streamlit run app.py
+```
+
+Au premier lancement, vous verrez:
+```
+📦 Extraction de base-cc-emploi-pop-active-2020.zip...
+✓ base-cc-emploi-pop-active-2020_v2.CSV extrait avec succès
+📦 Extraction de base-cc-logement-2021.zip...
+✓ base-cc-logement-2021.CSV extrait avec succès
 ```
 
 L'application sera accessible sur `http://localhost:8501`
