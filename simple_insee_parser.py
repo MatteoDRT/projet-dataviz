@@ -4,10 +4,33 @@ ULTRA-SIMPLE INSEE Parser - No fancy stuff, just works
 
 import pandas as pd
 import os
+import zipfile
 
 class SimpleINSEEParser:
     def __init__(self, raw_dir="data/raw"):
         self.raw_dir = raw_dir
+        self._extract_zipped_files()
+    
+    def _extract_zipped_files(self):
+        """Extract ZIP files if they exist and CSV files don't"""
+        zip_files = {
+            "base-cc-emploi-pop-active-2020.zip": "base-cc-emploi-pop-active-2020_v2.CSV",
+            "base-cc-logement-2021.zip": "base-cc-logement-2021.CSV"
+        }
+        
+        for zip_name, csv_name in zip_files.items():
+            zip_path = os.path.join(self.raw_dir, zip_name)
+            csv_path = os.path.join(self.raw_dir, csv_name)
+            
+            # Extract if ZIP exists and CSV doesn't
+            if os.path.exists(zip_path) and not os.path.exists(csv_path):
+                print(f"📦 Extraction de {zip_name}...")
+                try:
+                    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                        zip_ref.extractall(self.raw_dir)
+                    print(f"✓ {csv_name} extrait avec succès")
+                except Exception as e:
+                    print(f"❌ Erreur lors de l'extraction de {zip_name}: {e}")
         
     def parse_population(self):
         """Parse population CSV - actually uses housing file which has the data we need"""

@@ -33,9 +33,9 @@ data/cache/
 # Large data files (keep structure, ignore content)
 data2/
 
-# Large INSEE data files (>100MB - must be downloaded separately)
-data/raw/*.CSV
-data/raw/*.csv
+# Extracted CSV files from ZIPs (will be auto-extracted on first run)
+data/raw/base-cc-emploi-pop-active-2020_v2.CSV
+data/raw/base-cc-logement-2021.CSV
 
 # IDE
 .vscode/
